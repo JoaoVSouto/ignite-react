@@ -5,6 +5,8 @@ export default createGlobalStyle`
     --background: #f0f2f5;
     --shape: #fff;
 
+    --green: #33cc95;
+
     --red: #e52e4d;
 
     --blue: #5429cc;
