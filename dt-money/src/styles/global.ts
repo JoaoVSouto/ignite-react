@@ -85,4 +85,20 @@ export default createGlobalStyle`
     position: relative;
     border-radius: 4px;
   }
+
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    font-size: 0;
+    background-color: transparent;
+
+    transition: filter 200ms;
+
+    &:hover,
+    &:focus {
+      filter: brightness(0.8);
+    }
+  }
 `;
