@@ -20,9 +20,31 @@ export default function NewTransactionModal({
 }: NewTransactionModalProps) {
   const [type, setType] = React.useState<TypeStates>('deposit');
 
+  const [title, setTitle] = React.useState('');
+  const [price, setPrice] = React.useState('');
+  const [category, setCategory] = React.useState('');
+
+  const handleCreateNewTransaction = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log({
+      title,
+      price,
+      category,
+      type,
+    });
+  };
+
   const handleTypeChange = (newType: TypeStates) => () => {
     setType(newType);
   };
+
+  function handleFormFieldChange<T>(
+    dispatch: React.Dispatch<React.SetStateAction<T>>
+  ) {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch((e.target.value as unknown) as T);
+    };
+  }
 
   return (
     <Modal
@@ -40,12 +62,21 @@ export default function NewTransactionModal({
         <img src={closeImg} alt="Fechar modal" />
       </button>
 
-      <S.Container>
+      <S.Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar transação</h2>
 
-        <input placeholder="Título" />
+        <input
+          placeholder="Título"
+          value={title}
+          onChange={handleFormFieldChange(setTitle)}
+        />
 
-        <input type="number" placeholder="Preço" />
+        <input
+          type="number"
+          placeholder="Preço"
+          value={price}
+          onChange={handleFormFieldChange(setPrice)}
+        />
 
         <S.TransactionTypeContainer>
           <S.RadioBox
@@ -66,7 +97,11 @@ export default function NewTransactionModal({
           </S.RadioBox>
         </S.TransactionTypeContainer>
 
-        <input placeholder="Categoria" />
+        <input
+          placeholder="Categoria"
+          value={category}
+          onChange={handleFormFieldChange(setCategory)}
+        />
 
         <button type="submit">Cadastrar</button>
       </S.Container>
