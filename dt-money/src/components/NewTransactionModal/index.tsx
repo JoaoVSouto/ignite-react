@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Modal from 'react-modal';
 
+import api from '../../services/api';
+
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
@@ -26,12 +28,15 @@ export default function NewTransactionModal({
 
   const handleCreateNewTransaction = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({
+
+    const data = {
       title,
-      price,
+      price: Number(price),
       category,
       type,
-    });
+    };
+
+    api.post('transactions', data);
   };
 
   const handleTypeChange = (newType: TypeStates) => () => {
