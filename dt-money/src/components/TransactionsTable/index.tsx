@@ -8,18 +8,37 @@ type Transaction = {
   id: string;
   title: string;
   amount: number;
+  parsedAmount: string;
   type: string;
   category: string;
   createdAt: string;
+  parsedCreatedAt: string;
+};
+
+type TransactionsAPIResponse = {
+  transactions: Omit<Transaction, 'parsedAmount' | 'parsedCreatedAt'>[];
 };
 
 export default function TransactionsTable() {
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
   React.useEffect(() => {
-    api
-      .get('transactions')
-      .then(response => setTransactions(response.data.transactions));
+    api.get<TransactionsAPIResponse>('transactions').then(response => {
+      const incomingTransactions = response.data.transactions;
+
+      const parsedTransactions = incomingTransactions.map(transaction => ({
+        ...transaction,
+        parsedAmount: new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(transaction.amount),
+        parsedCreatedAt: new Intl.DateTimeFormat('pt-BR').format(
+          new Date(transaction.createdAt)
+        ),
+      }));
+
+      setTransactions(parsedTransactions);
+    });
   }, []);
 
   return (
@@ -38,9 +57,9 @@ export default function TransactionsTable() {
           {transactions.map(transaction => (
             <tr key={transaction.id}>
               <td className="title">{transaction.title}</td>
-              <td className={transaction.type}>{transaction.amount}</td>
+              <td className={transaction.type}>{transaction.parsedAmount}</td>
               <td>{transaction.category}</td>
-              <td>{transaction.createdAt}</td>
+              <td>{transaction.parsedCreatedAt}</td>
             </tr>
           ))}
         </tbody>
