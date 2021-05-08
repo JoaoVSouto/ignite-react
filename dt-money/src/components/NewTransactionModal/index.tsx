@@ -51,6 +51,7 @@ export default function NewTransactionModal({
           <S.RadioBox
             onClick={handleTypeChange('deposit')}
             isActive={type === 'deposit'}
+            activeColor="green"
           >
             <img src={incomeImg} alt="Entrada" />
             <span>Entrada</span>
@@ -58,6 +59,7 @@ export default function NewTransactionModal({
           <S.RadioBox
             onClick={handleTypeChange('withdraw')}
             isActive={type === 'withdraw'}
+            activeColor="red"
           >
             <img src={outcomeImg} alt="Saída" />
             <span>Saída</span>
