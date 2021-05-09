@@ -13,15 +13,26 @@ type Transaction = {
   parsedCreatedAt: string;
 };
 
+type RawTransaction = Omit<Transaction, 'parsedAmount' | 'parsedCreatedAt'>;
+
+type TransactionInput = Omit<RawTransaction, 'id' | 'createdAt'>;
+
 type TransactionsAPIResponse = {
-  transactions: Omit<Transaction, 'parsedAmount' | 'parsedCreatedAt'>[];
+  transactions: RawTransaction[];
 };
 
 type TransactionsProviderProps = {
   children: React.ReactNode;
 };
 
-export const TransactionsContext = React.createContext<Transaction[]>([]);
+type TransactionsContextData = {
+  transactions: Transaction[];
+  createTransaction(transaction: TransactionInput): void;
+};
+
+export const TransactionsContext = React.createContext<TransactionsContextData>(
+  {} as TransactionsContextData
+);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
@@ -45,8 +56,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     });
   }, []);
 
+  function createTransaction(transaction: TransactionInput) {
+    api.post('transactions', transaction);
+  }
+
   return (
-    <TransactionsContext.Provider value={transactions}>
+    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
       {children}
     </TransactionsContext.Provider>
   );
