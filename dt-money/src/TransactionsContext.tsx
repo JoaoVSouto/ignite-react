@@ -7,7 +7,7 @@ type Transaction = {
   title: string;
   amount: number;
   parsedAmount: string;
-  type: string;
+  type: 'deposit' | 'withdraw';
   category: string;
   createdAt: string;
   parsedCreatedAt: string;

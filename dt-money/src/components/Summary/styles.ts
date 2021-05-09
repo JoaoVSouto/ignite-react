@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
+import { darken } from 'polished';
 
 type SummaryProps = {
   highlight?: boolean;
+  negative?: boolean;
 };
 
 export const Container = styled.div`
@@ -17,10 +19,19 @@ export const Summary = styled.div<SummaryProps>`
   border-radius: 4px;
   color: var(--text-title);
 
+  transition: background-color 200ms;
+
   ${({ highlight }) =>
     highlight &&
     css`
       background-color: var(--green);
+      color: #fff;
+    `}
+
+  ${({ negative }) =>
+    negative &&
+    css`
+      background-color: ${darken(0.1, '#e52e4d')};
       color: #fff;
     `}
 
