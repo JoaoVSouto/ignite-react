@@ -28,9 +28,12 @@ export default function NewTransactionModal({
   const [price, setPrice] = React.useState('');
   const [category, setCategory] = React.useState('');
 
-  const handleCreateNewTransaction = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateNewTransaction = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
-    createTransaction({
+
+    await createTransaction({
       amount: Number(price),
       category,
       title,
