@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import api from './services/api';
+import api from '../services/api';
 
 type Transaction = {
   id: string;
@@ -41,7 +41,7 @@ const parseTransaction = (transaction: RawTransaction) => ({
   ),
 });
 
-export const TransactionsContext = React.createContext<TransactionsContextData>(
+const TransactionsContext = React.createContext<TransactionsContextData>(
   {} as TransactionsContextData
 );
 
@@ -73,4 +73,16 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       {children}
     </TransactionsContext.Provider>
   );
+}
+
+export function useTransactions() {
+  const context = React.useContext(TransactionsContext);
+
+  if (!context) {
+    throw new Error(
+      'useTransactions must be used within a TransactionProvider'
+    );
+  }
+
+  return context;
 }

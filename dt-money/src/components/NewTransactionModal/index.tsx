@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Modal from 'react-modal';
 
-import { TransactionsContext } from '../../TransactionsContext';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
@@ -20,7 +20,7 @@ export default function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
-  const { createTransaction } = React.useContext(TransactionsContext);
+  const { createTransaction } = useTransactions();
 
   const [type, setType] = React.useState<TypeStates>('deposit');
 

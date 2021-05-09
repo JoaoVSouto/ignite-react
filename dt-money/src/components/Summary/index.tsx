@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { TransactionsContext } from '../../TransactionsContext';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
@@ -9,7 +9,7 @@ import totalImg from '../../assets/total.svg';
 import * as S from './styles';
 
 export default function Summary() {
-  const { transactions } = React.useContext(TransactionsContext);
+  const { transactions } = useTransactions();
 
   const summary = React.useMemo(
     () =>
