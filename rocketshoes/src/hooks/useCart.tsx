@@ -66,9 +66,22 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const removeProduct = (productId: number) => {
     try {
-      // TODO
+      const foundProductIndex = cart.findIndex(
+        product => product.id === productId
+      );
+
+      if (foundProductIndex === -1) {
+        throw new Error('Product not found');
+      }
+
+      const updatedCart = cart.filter(
+        (_, index) => index !== foundProductIndex
+      );
+
+      setCart(updatedCart);
+      localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify(updatedCart));
     } catch {
-      // TODO
+      toast.error('Erro na remoção do produto');
     }
   };
 
