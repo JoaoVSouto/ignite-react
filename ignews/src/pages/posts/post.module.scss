@@ -52,4 +52,31 @@
       overflow-x: auto;
     }
   }
+
+  .previewContent {
+    user-select: none;
+    background: linear-gradient(var(--gray-100), transparent);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.continueReading {
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--gray-850);
+  border-radius: 6.25rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 4rem 0 2rem;
+
+  a {
+    color: var(--yellow-500);
+    margin-left: 0.5rem;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 }
