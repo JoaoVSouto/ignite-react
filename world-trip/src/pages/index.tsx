@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import {
   Box,
+  Divider,
   Flex,
   Heading,
   Img,
   ListItem,
-  SimpleGrid,
   Text,
   UnorderedList,
 } from '@chakra-ui/react';
@@ -128,6 +128,13 @@ export default function Home() {
           e mais...
         </ListItem>
       </Flex>
+
+      <Divider borderColor="gray.600" opacity="1" w="60px" mx="auto" />
+
+      <Text mt={6} fontSize="xl" fontWeight="medium" align="center">
+        Vamos nessa?
+        <br /> Então escolha seu continente
+      </Text>
     </>
   );
 }
