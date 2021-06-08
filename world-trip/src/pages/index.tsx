@@ -41,20 +41,29 @@ export default function Home() {
         bgSize="cover"
         backgroundPosition="center -23vw"
         px={4}
-        py={7}
+        py={[7, 8, 20]}
       >
-        <Heading
-          color="gray.50"
-          fontWeight="medium"
-          fontSize="xl"
-          lineHeight={7}
-        >
-          5 Continentes, <br />
-          infinitas possibilidades.
-        </Heading>
-        <Text color="gray.200" fontSize="sm" mt={2} lineHeight={5}>
-          Chegou a hora de tirar do papel a viagem que você sempre sonhou.
-        </Text>
+        <Flex maxW="1240px" mx="auto">
+          <Box>
+            <Heading
+              color="gray.50"
+              fontWeight="medium"
+              fontSize={['xl', '2xl', '4xl']}
+              lineHeight={[7, 8, 'base']}
+            >
+              5 Continentes, <br />
+              infinitas possibilidades.
+            </Heading>
+            <Text
+              color="gray.200"
+              fontSize={['sm', 'md', 'larger']}
+              mt={[2, 3, 5]}
+              lineHeight={[5, 6, 7]}
+            >
+              Chegou a hora de tirar do papel a viagem que você sempre sonhou.
+            </Text>
+          </Box>
+        </Flex>
       </Box>
 
       <Flex
@@ -150,7 +159,7 @@ export default function Home() {
         <br /> Então escolha seu continente
       </Text>
 
-      <Box
+      {/* <Box
         as={Swiper}
         className={styles.swiperContainer}
         loop
@@ -309,7 +318,18 @@ export default function Home() {
             O continente mais novo.
           </Text>
         </SwiperSlide>
-      </Box>
+      </Box> */}
     </>
   );
 }
+
+/*
+
+    --chakra-lineHeights-normal: normal;
+    --chakra-lineHeights-none: 1;
+    --chakra-lineHeights-shorter: 1.25;
+    --chakra-lineHeights-short: 1.375;
+    --chakra-lineHeights-base: 1.5;
+    --chakra-lineHeights-tall: 1.625;
+    --chakra-lineHeights-taller: 2;
+*/
