@@ -107,7 +107,13 @@ export default function Home() {
         </Flex>
       </Box>
 
-      <Divider borderColor="gray.600" opacity="1" w="60px" mx="auto" />
+      <Divider
+        borderColor="gray.600"
+        borderBottomWidth={{ base: 1, lg: 2 }}
+        opacity="1"
+        w={{ base: '60px', lg: '90px' }}
+        mx="auto"
+      />
 
       <Text mt={6} fontSize="xl" fontWeight="medium" align="center">
         Vamos nessa?
