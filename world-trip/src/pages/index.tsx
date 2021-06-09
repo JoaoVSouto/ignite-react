@@ -18,6 +18,8 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
+import Airplane from 'components/Airplane';
+
 import styles from 'styles/swiper.module.scss';
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
@@ -31,8 +33,8 @@ export default function Home() {
         <title>worldtrip</title>
       </Head>
 
-      <Flex justify="center" align="center" py={4}>
-        <Img src="/img/logo.svg" alt="world trip" w={20} />
+      <Flex justify="center" align="center" py={[4, 5, 7]}>
+        <Img src="/img/logo.svg" alt="world trip" w={[20, 32, 48]} />
       </Flex>
 
       <Box
@@ -40,10 +42,10 @@ export default function Home() {
         bgRepeat="no-repeat"
         bgSize="cover"
         backgroundPosition="center -23vw"
-        px={4}
+        px={[4, 6, 8]}
         py={[7, 8, 20]}
       >
-        <Flex maxW="1240px" mx="auto">
+        <Flex position="relative" maxW="1240px" mx="auto">
           <Box>
             <Heading
               color="gray.50"
@@ -59,10 +61,13 @@ export default function Home() {
               fontSize={['sm', 'md', 'larger']}
               mt={[2, 3, 5]}
               lineHeight={[5, 6, 7]}
+              maxW="524px"
             >
               Chegou a hora de tirar do papel a viagem que você sempre sonhou.
             </Text>
           </Box>
+
+          <Airplane />
         </Flex>
       </Box>
 
@@ -159,7 +164,7 @@ export default function Home() {
         <br /> Então escolha seu continente
       </Text>
 
-      {/* <Box
+      <Box
         as={Swiper}
         className={styles.swiperContainer}
         loop
@@ -318,18 +323,7 @@ export default function Home() {
             O continente mais novo.
           </Text>
         </SwiperSlide>
-      </Box> */}
+      </Box>
     </>
   );
 }
-
-/*
-
-    --chakra-lineHeights-normal: normal;
-    --chakra-lineHeights-none: 1;
-    --chakra-lineHeights-shorter: 1.25;
-    --chakra-lineHeights-short: 1.375;
-    --chakra-lineHeights-base: 1.5;
-    --chakra-lineHeights-tall: 1.625;
-    --chakra-lineHeights-taller: 2;
-*/
