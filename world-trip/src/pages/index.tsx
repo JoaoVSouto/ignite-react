@@ -19,6 +19,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 import Airplane from 'components/Airplane';
+import TravelType from 'components/TravelType';
 
 import styles from 'styles/swiper.module.scss';
 
@@ -71,91 +72,40 @@ export default function Home() {
         </Flex>
       </Box>
 
-      <Flex
-        as={UnorderedList}
-        flexWrap="wrap"
-        justify="center"
-        listStyleType="none"
-        css={{ gap: '1.75rem' }}
-        mx={12}
-        my={9}
-      >
-        <ListItem
-          fontSize="large"
-          fontWeight="medium"
-          _before={{
-            content: '""',
-            bgColor: 'yellow.400',
-            height: '8px',
-            width: '8px',
-            borderRadius: '50%',
-            display: 'inline-block',
-            marginRight: '1rem',
-          }}
+      <Box px={[4, 6, 8]}>
+        <Flex
+          as={UnorderedList}
+          flexWrap="wrap"
+          justify={{ base: 'center', lg: 'space-between' }}
+          listStyleType="none"
+          css={{ gap: '1.75rem' }}
+          maxW="1240px"
+          mx="auto"
+          mt={{ base: 9, lg: 28 }}
+          mb={{ base: 9, lg: 20 }}
         >
-          vida noturna
-        </ListItem>
-        <ListItem
-          fontSize="large"
-          fontWeight="medium"
-          _before={{
-            content: '""',
-            bgColor: 'yellow.400',
-            height: '8px',
-            width: '8px',
-            borderRadius: '50%',
-            display: 'inline-block',
-            marginRight: '1rem',
-          }}
-        >
-          praia
-        </ListItem>
-        <ListItem
-          fontSize="large"
-          fontWeight="medium"
-          _before={{
-            content: '""',
-            bgColor: 'yellow.400',
-            height: '8px',
-            width: '8px',
-            borderRadius: '50%',
-            display: 'inline-block',
-            marginRight: '1rem',
-          }}
-        >
-          moderno
-        </ListItem>
-        <ListItem
-          fontSize="large"
-          fontWeight="medium"
-          _before={{
-            content: '""',
-            bgColor: 'yellow.400',
-            height: '8px',
-            width: '8px',
-            borderRadius: '50%',
-            display: 'inline-block',
-            marginRight: '1rem',
-          }}
-        >
-          clássico
-        </ListItem>
-        <ListItem
-          fontSize="large"
-          fontWeight="medium"
-          _before={{
-            content: '""',
-            bgColor: 'yellow.400',
-            height: '8px',
-            width: '8px',
-            borderRadius: '50%',
-            display: 'inline-block',
-            marginRight: '1rem',
-          }}
-        >
-          e mais...
-        </ListItem>
-      </Flex>
+          <TravelType
+            label="vida noturna"
+            img={{ src: '/img/cocktail.svg', alt: 'Coquetel' }}
+          />
+          <TravelType
+            label="praia"
+            img={{ src: '/img/surf.svg', alt: 'Surf' }}
+          />
+          <TravelType
+            label="moderno"
+            img={{ src: '/img/building.svg', alt: 'Prédio' }}
+          />
+          <TravelType
+            label="clássico"
+            img={{ src: '/img/museum.svg', alt: 'Museu' }}
+          />
+          <TravelType
+            label="e mais..."
+            img={{ src: '/img/earth.svg', alt: 'Planeta Terra' }}
+          />
+        </Flex>
+      </Box>
 
       <Divider borderColor="gray.600" opacity="1" w="60px" mx="auto" />
 
@@ -164,7 +114,7 @@ export default function Home() {
         <br /> Então escolha seu continente
       </Text>
 
-      <Box
+      {/* <Box
         as={Swiper}
         className={styles.swiperContainer}
         loop
@@ -323,7 +273,7 @@ export default function Home() {
             O continente mais novo.
           </Text>
         </SwiperSlide>
-      </Box>
+      </Box> */}
     </>
   );
 }

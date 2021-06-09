@@ -18,9 +18,7 @@ export default function Airplane() {
       position="absolute"
       right="0"
       display={{ base: 'none', lg: 'block' }}
-      animate={{
-        y: [5, -5],
-      }}
+      animate={{ y: [5, -5] }}
       // @ts-ignore
       transition={{
         repeat: Infinity,
