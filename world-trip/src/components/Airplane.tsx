@@ -1,10 +1,35 @@
-import { Box, BoxProps, useToken } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import * as React from 'react';
+import {
+  Box,
+  BoxProps,
+  useBreakpointValue,
+  usePrefersReducedMotion,
+  useToken,
+} from '@chakra-ui/react';
+import { motion, useAnimation } from 'framer-motion';
 
 const MotionBox = motion<BoxProps>(Box);
 
 export default function Airplane() {
   const [yellow400, gray50] = useToken('colors', ['yellow.400', 'gray.50']);
+  const shouldAnimate = useBreakpointValue({ base: false, lg: true });
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  const controls = useAnimation();
+
+  React.useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    if (shouldAnimate) {
+      controls.start({
+        y: [5, -5],
+      });
+    } else {
+      controls.stop();
+    }
+  }, [shouldAnimate, prefersReducedMotion, controls]);
 
   return (
     <MotionBox
@@ -18,7 +43,7 @@ export default function Airplane() {
       position="absolute"
       right="0"
       display={{ base: 'none', lg: 'block' }}
-      animate={{ y: [5, -5] }}
+      animate={controls}
       // @ts-ignore
       transition={{
         repeat: Infinity,
