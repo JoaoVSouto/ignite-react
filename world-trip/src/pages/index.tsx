@@ -6,7 +6,6 @@ import {
   Heading,
   Image,
   Img,
-  ListItem,
   Text,
   UnorderedList,
   useToken,
@@ -20,6 +19,7 @@ import 'swiper/components/pagination/pagination.min.css';
 
 import Airplane from 'components/Airplane';
 import TravelType from 'components/TravelType';
+import SlideItem from 'components/SlideItem';
 
 import styles from 'styles/swiper.module.scss';
 
@@ -125,166 +125,83 @@ export default function Home() {
         <br /> Então escolha seu continente
       </Text>
 
-      {/* <Box
+      <Box
         as={Swiper}
         className={styles.swiperContainer}
         loop
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         navigation
         pagination={{ clickable: true }}
-        height={64}
-        mt={5}
-        mb={6}
+        height={{ base: 64, md: 72, lg: 450 }}
+        mt={{ base: 5, lg: 12 }}
+        mb={{ base: 6, lg: 10 }}
+        maxW="1240px"
         css={{
           '--swiper-navigation-color': yellow400,
           '--swiper-pagination-color': yellow400,
         }}
       >
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/na-banner.jpg"
-            alt="Fotografia da estátua da liberdade"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="América do Norte"
+            description="O segundo maior continente."
+            img={{
+              src: '/img/na-banner.jpg',
+              alt: 'Fotografia da estátua da liberdade',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            América do Norte
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O segundo maior continente.
-          </Text>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/sa-banner.jpg"
-            alt="Fotografia aérea da praia de Copacabana"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="América do Sul"
+            description="O continente mais tropical."
+            img={{
+              src: '/img/sa-banner.jpg',
+              alt: 'Fotografia aérea da praia de Copacabana',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            América do Sul
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O continente mais tropical.
-          </Text>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/asia-banner.jpg"
-            alt="Fotografia de uma torre tailandesa vermelha e marrom"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="Ásia"
+            description="O continente mais diverso."
+            img={{
+              src: '/img/asia-banner.jpg',
+              alt: 'Fotografia de uma torre tailandesa vermelha e marrom',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            Ásia
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O continente mais diverso.
-          </Text>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/africa-banner.jpg"
-            alt="Fotografia de uma árvore entre terras verdes durante o alvorecer"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="África"
+            description="O continente mãe."
+            img={{
+              src: '/img/africa-banner.jpg',
+              alt: 'Fotografia de uma árvore entre terras verdes durante o alvorecer',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            África
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O continente mãe.
-          </Text>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/europe-banner.jpg"
-            alt="Fotografia aérea de uma iluminada ponte de concreto"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="Europa"
+            description="O continente mais antigo."
+            img={{
+              src: '/img/europe-banner.jpg',
+              alt: 'Fotografia aérea de uma iluminada ponte de concreto',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            Europa
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O continente mais antigo.
-          </Text>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <Image
-            src="/img/oceania-banner.jpg"
-            alt="Fotografia da casa de ópera de Sydney"
-            objectFit="cover"
-            h="100%"
-            w="100%"
-            position="absolute"
-            css={{ filter: 'brightness(0.3)' }}
-            zIndex="-1"
+          <SlideItem
+            title="Oceania"
+            description="O continente mais novo."
+            img={{
+              src: '/img/oceania-banner.jpg',
+              alt: 'Fotografia da casa de ópera de Sydney',
+            }}
           />
-          <Text
-            as="strong"
-            color="gray.50"
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={12}
-          >
-            Oceania
-          </Text>
-          <Text color="gray.200" fontWeight="bold" fontSize="sm" mt={9}>
-            O continente mais novo.
-          </Text>
         </SwiperSlide>
-      </Box> */}
+      </Box>
     </>
   );
 }
