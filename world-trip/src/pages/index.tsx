@@ -115,7 +115,12 @@ export default function Home() {
         mx="auto"
       />
 
-      <Text mt={6} fontSize="xl" fontWeight="medium" align="center">
+      <Text
+        mt={{ base: 6, lg: 12 }}
+        fontSize={{ base: 'xl', md: '2xl', lg: '4xl' }}
+        fontWeight="medium"
+        align="center"
+      >
         Vamos nessa?
         <br /> Então escolha seu continente
       </Text>
