@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Box,
   Button,
@@ -23,6 +24,12 @@ import Pagination from 'components/Pagination';
 
 export default function UserList() {
   const isWideVersion = useBreakpointValue({ base: false, lg: true });
+
+  React.useEffect(() => {
+    fetch('http://localhost:3000/api/users')
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }, []);
 
   return (
     <Box>
