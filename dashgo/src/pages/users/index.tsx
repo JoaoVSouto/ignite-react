@@ -24,21 +24,27 @@ import Sidebar from 'components/Sidebar';
 import Pagination from 'components/Pagination';
 
 export default function UserList() {
-  const { data, isLoading, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users');
-    const data = await response.json();
+  const { data, isLoading, error } = useQuery(
+    'users',
+    async () => {
+      const response = await fetch('http://localhost:3000/api/users');
+      const data = await response.json();
 
-    const users = data.users.map(user => ({
-      ...user,
-      created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      }),
-    }));
+      const users = data.users.map(user => ({
+        ...user,
+        created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        }),
+      }));
 
-    return users;
-  });
+      return users;
+    },
+    {
+      staleTime: 1000 * 5,
+    }
+  );
 
   const isWideVersion = useBreakpointValue({ base: false, lg: true });
 
