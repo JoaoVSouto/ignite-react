@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Box,
   Button,
@@ -6,6 +5,7 @@ import {
   Flex,
   Heading,
   Icon,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -17,19 +17,21 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiAddLine } from 'react-icons/ri';
+import { useQuery } from 'react-query';
 
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 import Pagination from 'components/Pagination';
 
 export default function UserList() {
-  const isWideVersion = useBreakpointValue({ base: false, lg: true });
+  const { data, isLoading, error } = useQuery('users', async () => {
+    const response = await fetch('http://localhost:3000/api/users');
+    const data = await response.json();
 
-  React.useEffect(() => {
-    fetch('http://localhost:3000/api/users')
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, []);
+    return data;
+  });
+
+  const isWideVersion = useBreakpointValue({ base: false, lg: true });
 
   return (
     <Box>
@@ -56,35 +58,49 @@ export default function UserList() {
             </Link>
           </Flex>
 
-          <Table colorScheme="whiteAlpha">
-            <Thead>
-              <Tr>
-                <Th px={[4, 4, 6]} width={8}>
-                  <Checkbox colorScheme="pink" />
-                </Th>
-                <Th>Usuário</Th>
-                {isWideVersion && <Th>Data de cadastro</Th>}
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <Td px={[4, 4, 6]}>
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">João Vítor</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      joao@vitor.com
-                    </Text>
-                  </Box>
-                </Td>
-                {isWideVersion && <Td>02 de Junho, 2021</Td>}
-              </Tr>
-            </Tbody>
-          </Table>
+          {isLoading ? (
+            <Flex justify="center">
+              <Spinner />
+            </Flex>
+          ) : error ? (
+            <Flex justify="center">
+              <Text>
+                Falha ao obter dados do usuário. Por favor, tente novamente.
+              </Text>
+            </Flex>
+          ) : (
+            <>
+              <Table colorScheme="whiteAlpha">
+                <Thead>
+                  <Tr>
+                    <Th px={[4, 4, 6]} width={8}>
+                      <Checkbox colorScheme="pink" />
+                    </Th>
+                    <Th>Usuário</Th>
+                    {isWideVersion && <Th>Data de cadastro</Th>}
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td px={[4, 4, 6]}>
+                      <Checkbox colorScheme="pink" />
+                    </Td>
+                    <Td>
+                      <Box>
+                        <Text fontWeight="bold">João Vítor</Text>
+                        <Text fontSize="sm" color="gray.300">
+                          joao@vitor.com
+                        </Text>
+                      </Box>
+                    </Td>
+                    {isWideVersion && <Td>02 de Junho, 2021</Td>}
+                  </Tr>
+                </Tbody>
+              </Table>
 
-          <Pagination />
+              <Pagination />
+            </>
+          )}
         </Box>
       </Flex>
     </Box>
