@@ -134,3 +134,15 @@ export default function UserList() {
     </Box>
   );
 }
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+// ! this doesn't work with MirageJS yet...
+//   const { users, totalCount } = await getUsers();
+
+//   return {
+//     props: {
+//       users,
+//       totalCount,
+//     },
+//   };
+// };
