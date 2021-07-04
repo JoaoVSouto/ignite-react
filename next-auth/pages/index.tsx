@@ -1,3 +1,35 @@
+import * as React from 'react';
+
+import { AuthContext } from '../contexts/AuthContext';
+
 export default function Home() {
-  return <h1>hello world</h1>;
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const { signIn } = React.useContext(AuthContext);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const data = { email, password };
+
+    await signIn(data);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+
+      <button type="submit">Entrar</button>
+    </form>
+  );
 }
