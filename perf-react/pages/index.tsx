@@ -22,6 +22,10 @@ const Home: NextPage = () => {
     setResults(data);
   }
 
+  const addToWishlist = React.useCallback((id: number) => {
+    console.log(id);
+  }, []);
+
   return (
     <>
       <h1 className={styles.title}>Search</h1>
@@ -36,7 +40,7 @@ const Home: NextPage = () => {
         <button type="submit">Buscar</button>
       </form>
 
-      <SearchResults results={results} />
+      <SearchResults results={results} onAddToWishlist={addToWishlist} />
     </>
   );
 };
