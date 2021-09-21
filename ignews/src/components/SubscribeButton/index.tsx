@@ -6,11 +6,7 @@ import { getStripeJs } from '../../services/stripe-js';
 
 import styles from './styles.module.scss';
 
-type SubscribeButtonProps = {
-  priceId: string;
-};
-
-export default function SubscribeButton({ priceId }: SubscribeButtonProps) {
+export default function SubscribeButton() {
   const [session] = useSession();
   const router = useRouter();
 
